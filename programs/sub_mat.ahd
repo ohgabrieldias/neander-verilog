@@ -1,0 +1,66 @@
+; Subtracao de matrizes 3x3: C = A - B, elemento a elemento
+; Maquina Ahmes do Hidra, usando so instrucoes do Neander + SUB (codigo 0111).
+; Laco desenrolado: o Neander so tem enderecamento direto.
+
+        ORG 0
+        LDA A00
+        SUB B00
+        STA C00
+        LDA A01
+        SUB B01
+        STA C01
+        LDA A02
+        SUB B02
+        STA C02
+        LDA A10
+        SUB B10
+        STA C10
+        LDA A11
+        SUB B11
+        STA C11
+        LDA A12
+        SUB B12
+        STA C12
+        LDA A20
+        SUB B20
+        STA C20
+        LDA A21
+        SUB B21
+        STA C21
+        LDA A22
+        SUB B22
+        STA C22
+        HLT
+
+        ORG 128          ; matriz A (h80)
+A00:    DB h0A
+A01:    DB h14
+A02:    DB h1E
+A10:    DB h05
+A11:    DB h03
+A12:    DB h64
+A20:    DB h00
+A21:    DB h80
+A22:    DB h7F
+
+        ORG 144          ; matriz B (h90)
+B00:    DB h01
+B01:    DB h04
+B02:    DB h0E
+B10:    DB h05
+B11:    DB h05
+B12:    DB h32
+B20:    DB h01
+B21:    DB h01
+B22:    DB hFF
+
+        ORG 160          ; matriz C, resultado (hA0)
+C00:    DB 0
+C01:    DB 0
+C02:    DB 0
+C10:    DB 0
+C11:    DB 0
+C12:    DB 0
+C20:    DB 0
+C21:    DB 0
+C22:    DB 0

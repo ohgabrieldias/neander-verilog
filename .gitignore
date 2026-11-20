@@ -1,0 +1,18 @@
+# Projeto e artefatos do Vivado (recriados pelo vivado.tcl)
+vivado/
+.Xil/
+xsim.dir/
+*.jou
+*.log
+*.str
+*.wdb
+*.pb
+
+# Saidas de simulacao
+*.vvp
+*.vcd
+
+# Layout local do GTKWave (caminhos da maquina)
+*.gtkw
+
+__pycache__/

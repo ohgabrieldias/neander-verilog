@@ -1,0 +1,13 @@
+// --- programa (endereco 0) ---
+20 80    // 00: LDA 80   AC <- mem[80]
+30 81    // 02: ADD 81   AC <- AC + mem[81]
+30 82    // 04: ADD 82   AC <- AC + mem[82]
+10 83    // 06: STA 83   mem[83] <- AC
+F0       // 08: HLT
+
+// --- dados ---
+@80      //0x80
+05       // 80: primeira parcela
+03       // 81: segunda parcela
+02       // 82: terceira parcela
+00       // 83: resultado (deve virar 0A)

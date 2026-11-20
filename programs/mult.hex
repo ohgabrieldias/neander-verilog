@@ -1,0 +1,34 @@
+// Multiplicacao por somas sucessivas: R = A x B
+// (soma A, B vezes; C e o contador, comeca em B e desce ate 0)
+
+// --- programa (endereco 0) ---
+20 85       // 00: LDA 85   AC <- ZERO
+10 82       // 02: STA 82   R <- 0
+20 81       // 04: LDA 81   AC <- B
+10 83       // 06: STA 83   C <- B (copia, para nao destruir o B)
+A0 18       // 08: JZ  18   laco: se C == 0, vai pro fim
+20 82       // 0A: LDA 82   AC <- R
+30 80       // 0C: ADD 80   AC <- R + A
+10 82       // 0E: STA 82   R <- R + A
+20 83       // 10: LDA 83   AC <- C
+70 84       // 12: SUB 84   AC <- C - 1 (Z ja fica pronto pro JZ)
+10 83       // 14: STA 83   C <- C - 1
+80 08       // 16: JMP 08   volta pro teste do laco
+F0          // 18: HLT      fim
+
+// --- dados ---
+@80         // 0x80
+10          // 0x80 - multiplicando     -- A
+08          // 0x81 - multiplicador     -- B (quantas vezes soma o A)
+00          // 0x82 - resultado         -- R
+00          // 0x83 - contador          -- C
+01          // 0x84 - constante 1       -- UM
+00          // 0x85 - constante 0       -- ZERO
+
+
+// R = 0
+// C = B                 (cópia de B, para não destruir o original)
+// enquanto C != 0:
+//     R = R + A
+//     C = C - 1
+// fim

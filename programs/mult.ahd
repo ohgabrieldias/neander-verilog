@@ -1,0 +1,26 @@
+; Multiplicacao por somas sucessivas: R = A x B
+; Maquina Ahmes do Hidra, usando so instrucoes do Neander + SUB (codigo 0111).
+; C e o contador: comeca em B e desce ate 0; a cada volta R = R + A.
+
+        ORG 0
+        LDA ZERO        ; R <- 0
+        STA R
+        LDA B           ; C <- B (copia, para nao destruir o B)
+        STA C
+LACO:   JZ  FIM         ; Z vem do LDA B (1a volta) ou do SUB UM (demais)
+        LDA R           ; R <- R + A
+        ADD A
+        STA R
+        LDA C           ; C <- C - 1
+        SUB UM
+        STA C
+        JMP LACO
+FIM:    HLT
+
+        ORG 128
+A:      DB 16           ; multiplicando
+B:      DB 8            ; multiplicador
+R:      DB 0            ; resultado
+C:      DB 0            ; contador
+UM:     DB 1
+ZERO:   DB 0

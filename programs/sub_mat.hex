@@ -1,0 +1,65 @@
+// Subtracao de matrizes 3x3: C = A - B (elemento a elemento)
+
+// --- programa (endereco 0) ---
+20 80       // 00: LDA 80   AC <- a00
+70 90       // 02: SUB 90   AC <- a00 - b00
+10 A0       // 04: STA A0   c00 <- AC
+20 81       // 06: LDA 81   AC <- a01
+70 91       // 08: SUB 91   AC <- a01 - b01
+10 A1       // 0A: STA A1   c01 <- AC
+20 82       // 0C: LDA 82   AC <- a02
+70 92       // 0E: SUB 92   AC <- a02 - b02
+10 A2       // 10: STA A2   c02 <- AC
+20 83       // 12: LDA 83   AC <- a10
+70 93       // 14: SUB 93   AC <- a10 - b10
+10 A3       // 16: STA A3   c10 <- AC
+20 84       // 18: LDA 84   AC <- a11
+70 94       // 1A: SUB 94   AC <- a11 - b11
+10 A4       // 1C: STA A4   c11 <- AC
+20 85       // 1E: LDA 85   AC <- a12
+70 95       // 20: SUB 95   AC <- a12 - b12
+10 A5       // 22: STA A5   c12 <- AC
+20 86       // 24: LDA 86   AC <- a20
+70 96       // 26: SUB 96   AC <- a20 - b20
+10 A6       // 28: STA A6   c20 <- AC
+20 87       // 2A: LDA 87   AC <- a21
+70 97       // 2C: SUB 97   AC <- a21 - b21
+10 A7       // 2E: STA A7   c21 <- AC
+20 88       // 30: LDA 88   AC <- a22
+70 98       // 32: SUB 98   AC <- a22 - b22
+10 A8       // 34: STA A8   c22 <- AC
+F0          // 36: HLT      fim
+
+// --- dados ---
+@80         // matriz A
+0A          // 0x80 - a00
+14          // 0x81 - a01
+1E          // 0x82 - a02
+05          // 0x83 - a10
+03          // 0x84 - a11
+64          // 0x85 - a12
+00          // 0x86 - a20
+80          // 0x87 - a21
+7F          // 0x88 - a22
+
+@90         // matriz B
+01          // 0x90 - b00
+04          // 0x91 - b01
+0E          // 0x92 - b02
+05          // 0x93 - b10   (igual: resultado 0)
+05          // 0x94 - b11   (A < B: negativo)
+32          // 0x95 - b12
+01          // 0x96 - b20   (0 - 1 = FF (-1))
+01          // 0x97 - b21   (estoura: -128 - 1)
+FF          // 0x98 - b22   (estoura: 127 - (-1))
+
+@A0         // matriz C (resultado)
+00          // 0xA0 - c00   (esperado 09)
+00          // 0xA1 - c01   (esperado 10)
+00          // 0xA2 - c02   (esperado 10)
+00          // 0xA3 - c10   (esperado 00)
+00          // 0xA4 - c11   (esperado FE)
+00          // 0xA5 - c12   (esperado 32)
+00          // 0xA6 - c20   (esperado FF)
+00          // 0xA7 - c21   (esperado 7F)
+00          // 0xA8 - c22   (esperado 80)
